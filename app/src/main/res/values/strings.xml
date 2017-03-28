@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Rendered Text Pizza Challenge</string>
+    <string name="generate_and_send"><![CDATA[Generate file & send]]></string>
+    <string name="submit_file">Submit file</string>
+</resources>
