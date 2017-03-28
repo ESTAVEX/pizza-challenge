@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.NetworkResponse;
@@ -46,6 +47,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button generateFileButton;
     private Button submitFileButton;
 
+    private TextView resultTextView;
+
     // Request for fetching JSON
     private RequestQueue requestQueue;
 
@@ -60,10 +63,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         generateFileButton = (Button) findViewById(R.id.generate_file_button);
         submitFileButton = (Button) findViewById(R.id.submit_file_button);
+        resultTextView = (TextView) findViewById(R.id.result_text_view);
 
         requestQueue = Volley.newRequestQueue(this);
         pizzas = new ArrayList<>();
-        getJsonObject(generateURL());
 
         submitFileButton.setEnabled(false);
         generateFileButton.setOnClickListener(this);
@@ -249,7 +252,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             // Set info
             personalInfo.put("full_name", "Milan Obrenovic");
             personalInfo.put("email", "mmobrenovic@gmail.com");
-            personalInfo.put("code_link", "link do tvog koda");
+            personalInfo.put("code_link", "https://github.com/ESTAVEX/pizza-challenge/");
 
             // Add info to the root object
             rootObject.put("personal_info", personalInfo);
@@ -277,7 +280,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Log.v("result", rootObject.toString());
 
-//        resultTextView.setText(rootObject.toString());
+        resultTextView.setText(rootObject.toString());
         writeToFile(rootObject.toString());
     }
 
@@ -354,6 +357,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.generate_file_button:
+                getJsonObject(generateURL());
                 Toast.makeText(MainActivity.this, "File generated successfully", Toast.LENGTH_SHORT).show();
                 submitFileButton.setEnabled(true);
                 break;

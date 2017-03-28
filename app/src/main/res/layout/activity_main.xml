@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="@string/generate_and_send" />
+            android:text="@string/generate_file" />
 
         <Button
             android:id="@+id/submit_file_button"
